@@ -1,0 +1,29 @@
+version: '3'
+services:
+  calculs:
+    build:
+      context: ./calculs
+    ports:
+      - "80:80"
+    depends_on:
+      - rendu1
+      - rendu2
+      - rendu3
+  rendu1:
+    build:
+      context: ./rendu
+    ports:
+      - "5001:5001"
+    command: uvicorn main:app --host 0.0.0.0 --port 5001
+  rendu2:
+    build:
+      context: ./rendu
+    ports:
+      - "5002:5002"
+    command: uvicorn main:app --host 0.0.0.0 --port 5002
+  rendu3:
+    build:
+      context: ./rendu
+    ports:
+      - "5003:5003"
+    command: uvicorn main:app --host 0.0.0.0 --port 5003
